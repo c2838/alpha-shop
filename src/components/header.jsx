@@ -1,28 +1,34 @@
+import logoImg from '../assets/logo.svg'
+import searchImg from '../assets/search.svg'
+import cartImg from '../assets/cart.svg';
+import moonImg from '../assets/moon.svg';
+import headerStyle from '../style/header.module.css'
+
 function NavListSort() {
   return (
-    <ul className="nav-list site-menu-list mr-auto">
-      <li className="nav-item">
-        <a className="nav-link" href="#">
+    <ul className={headerStyle.navbarList}>
+      <li className={headerStyle.navItem}>
+        <a className={headerStyle.navItemHerf} href="#">
           男款
         </a>
       </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">
+      <li className={headerStyle.navItem}>
+        <a className={headerStyle.navItemHerf} href="#">
           女款
         </a>
       </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">
+      <li className={headerStyle.navItem}>
+        <a className={headerStyle.navItemHerf} href="#">
           最新消息
         </a>
       </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">
+      <li className={headerStyle.navItem}>
+        <a className={headerStyle.navItemHerf} href="#">
           客製商品
         </a>
       </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">
+      <li className={headerStyle.navItem}>
+        <a className={headerStyle.navItemHerf} href="#">
           聯絡我們
         </a>
       </li>
@@ -32,29 +38,26 @@ function NavListSort() {
 
 function NavListIcon() {
   return (
-    <ul className="nav-list site-action-list">
+    <ul className={headerStyle.navbarListIcon}>
       {/* search */}
-      <li className="nav-item">
+      <li className={headerStyle.navIconItem}>
         <object
-          data="./assets/search.svg"
-          className="nav-icon cursor-point"
+          data={searchImg}
+          className={headerStyle.navIconImg}
           type="image/svg+xml"
         ></object>
       </li>
       {/* cart */}
-      <li className="nav-item">
+      <li className={headerStyle.navIconItem}>
         <object
-          data="./assets/cart.svg"
-          className="nav-icon cursor-point"
+          data={cartImg}
+          className={headerStyle.navIconImg}
           type="image/svg+xml"
         ></object>
       </li>
-      <li id="theme-toggle" className="nav-item">
+      <li id="theme-toggle" className={headerStyle.navIconItem}>
         {/* moon */}
-        <object
-          data="./assets/moon.svg"
-          className="nav-icon cursor-point"
-        ></object>
+        <object data={moonImg} className={headerStyle.navIconImg}></object>
         {/* sun */}
         {/* <object data="./public/icons/sun.svg" className="nav-icon cursor-point">
           </object> */}
@@ -65,8 +68,8 @@ function NavListIcon() {
 
 function Logo() {
     return (
-      <a className="header-logo-container" href="#">
-        <img src="./assets/logo.svg" className="cursor-point" />
+      <a className={headerStyle.logo} href="#">
+        <img src={logoImg} className={headerStyle.logoImg} />
       </a>
     );
 }
@@ -74,12 +77,12 @@ function Logo() {
 
 export default function Header() {
   return (
-    <div className="header-container">
-      <nav className="navbar-menu">
+    <div className={headerStyle.headerContainer}>
+      <nav className={headerStyle.navbar}>
         <NavListSort />
+        <Logo />
         <NavListIcon />
       </nav>
-      <Logo />
     </div>
   );
 }
