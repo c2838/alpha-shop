@@ -2,12 +2,10 @@
   padding-top: 70px;
 }
 
-.formContainer {
-  width: 100%;
-  margin-bottom: 40px;
-}
+
 
 .registerTitle {
+  height: 50px;
   margin-bottom: 50px;
   font-size: 32px;
   font-weight: 700;

@@ -1,6 +1,4 @@
-import FormAddress from './form_address.jsx'
-import FormShipping from './form_shipping.jsx'
-import FormCheckout from './form_checkout.jsx'
+import Form from './form.jsx'
 import ProgressControl from './progress.jsx'
 import registerStyle from '../style/register.module.css'
 
@@ -45,9 +43,7 @@ export default function Register() {
     >
       <RegisterTitle />
       <RegisterProgress />
-      <section className={registerStyle.formContainer}>
-        <FormAddress />
-      </section>
+      <Form />
       <ProgressControl />
     </section>
   );
