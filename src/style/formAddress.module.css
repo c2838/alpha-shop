@@ -1,0 +1,70 @@
+.formTitle {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.formBody {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 3fr;
+  grid-template-areas: 
+  "S S N N N N"
+  "T T T M M M"
+  "C C A A A A";
+  grid-gap: 25px 50px;
+}
+
+.inputGroupSex {
+  grid-area: S;
+}
+
+.inputGroupName {
+  grid-area: N;
+}
+
+.inputGroupTel {
+  grid-area: T;
+}
+
+.inputGroupMail {
+  grid-area: M;
+}
+
+.inputGroupCounty {
+  grid-area: C;
+}
+
+.inputGroupAdd {
+  grid-area: A;
+}
+
+
+:global(select) {
+  -webkit-appearance: none;
+  height: 40px;
+  width: 100%;
+  border: 1px solid #4A4A4A;
+  border-radius: 5px;
+}
+
+:global(select:invalid) {
+  color: #747474;
+}
+
+:global(input) {
+  -webkit-appearance: none;
+  height: 40px;
+  width: 100%;
+  border: 1px solid #4A4A4A;
+  border-radius: 5px;
+}
+
+
+
+.inputLabel {
+  margin-bottom: 0.5rem;
+  font-size: 16px;
+  font-weight: 700;
+  color: #808080;
+}

@@ -1,0 +1,32 @@
+.progressContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+:global(button) {
+  -webkit-appearance: none;
+}
+
+.btnGroup {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nextBtn {
+  width: 180px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: transparent;
+  border-radius: 5px;
+  background-color: #F67599;
+}
+
+.cursorPoint {
+  margin-left: 8%;
+}

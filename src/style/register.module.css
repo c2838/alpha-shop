@@ -1,9 +1,14 @@
 .registerContainer {
-  padding-top: 100px;
+  padding-top: 70px;
+}
+
+.formContainer {
+  width: 100%;
+  margin-bottom: 40px;
 }
 
 .registerTitle {
-  margin-bottom: 75px;
+  margin-bottom: 50px;
   font-size: 32px;
   font-weight: 700;
   color: #2A2A2A;
@@ -12,12 +17,10 @@
 .progressContainer {
   width: 100%;
   height: 30px;
-  margin-bottom: 70px;
-  display: grid;
-  grid-template-columns: 25% 1fr 25% 1fr 25%;
-  grid-template-rows: 1fr;
+  margin-bottom: 50px;
+  display: flex;
   align-items: center;
-  justify-items: center;
+  justify-content: space-between;
 }
 
 .progressGroup {
@@ -29,7 +32,7 @@
 
 .progressLine {
   height: 2px;
-  width: 90%;
+  width: 10%;
   display: block;
   background-color: #000;
 }

@@ -1,6 +1,7 @@
 import FormAddress from './form_address.jsx'
 import FormShipping from './form_shipping.jsx'
 import FormCheckout from './form_checkout.jsx'
+import ProgressControl from './progress.jsx'
 import registerStyle from '../style/register.module.css'
 
 function RegisterTitle() {
@@ -37,12 +38,17 @@ function RegisterProgress() {
 
 export default function Register() {
   return (
-    <section className={registerStyle.registerContainer} data-phase="1" data-total-price="0">
+    <section
+      className={registerStyle.registerContainer}
+      data-phase="1"
+      data-total-price="0"
+    >
       <RegisterTitle />
       <RegisterProgress />
-      <section className="form-container col col-12">
+      <section className={registerStyle.formContainer}>
         <FormAddress />
       </section>
+      <ProgressControl />
     </section>
-  )
+  );
 }
