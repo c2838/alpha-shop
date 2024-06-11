@@ -1,6 +1,6 @@
 .cartContainer {
   width: 80%;
-  padding: 35px 30px;
+  padding: 35px 30px 0px 30px;
   margin-top: 170px;
   border: 1px solid #F0F0F5;
   border-radius: 8px;
@@ -49,14 +49,35 @@
   width: 120px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.productCount {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .productPrice {
   position: absolute;
   top: 0;
   right: 0;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .cartInfo {
+  margin-bottom: 35px;
+  padding-top: 20px;
   display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #F0F0F5;
+}
+
+.cartInfoText {
+  font-size: 14px;
+}
+
+.cartInfoPrice {
+  font-size: 14px;
+  font-weight: 700;
 }

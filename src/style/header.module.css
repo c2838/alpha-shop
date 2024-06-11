@@ -22,7 +22,7 @@
   width: 75%;
   height: 100%;
   display: flex;
-  justify-self: end;
+  justify-content: end;
   align-items: center;
 }
 
@@ -45,6 +45,7 @@
 .navItemHerf {
   text-decoration: none;
   color: black;
+  font-size: 16px;
 }
 
 .logoImg {

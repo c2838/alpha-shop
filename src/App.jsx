@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/header.jsx'
 import Main from './components/main.jsx'
+import Footer from './components/footer.jsx'
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -15,7 +17,9 @@ function App() {
       <main>
         <Main />
       </main>
-      <footer></footer>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

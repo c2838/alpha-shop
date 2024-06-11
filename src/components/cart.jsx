@@ -24,7 +24,7 @@ export default function Cart() {
                     className="product-action minus"
                     data={minusImg}
                   ></object>
-                  <span className="product-count">0</span>
+                  <span className={cartStyle.productCount}>0</span>
                   <object
                     className="product-action minus"
                     data={plusImg}
@@ -48,7 +48,7 @@ export default function Cart() {
                     className="product-action minus"
                     data={minusImg}
                   ></object>
-                  <span className="product-count">0</span>
+                  <span className={cartStyle.productCount}>0</span>
                   <object
                     className="product-action minus"
                     data={plusImg}
@@ -60,12 +60,12 @@ export default function Cart() {
           </div>
         </section>
         <section className={cartStyle.cartInfo}>
-          <div className="text">運費</div>
-          <div className="price">免費</div>
+          <div className={cartStyle.cartInfoText}>運費</div>
+          <div className={cartStyle.cartInfoPrice}>免費</div>
         </section>
         <section className={cartStyle.cartInfo}>
-          <div className="text">小計</div>
-          <div className="price">$0</div>
+          <div className={cartStyle.cartInfoText}>小計</div>
+          <div className={cartStyle.cartInfoPrice}>$5298</div>
         </section>
       </section>
     </>

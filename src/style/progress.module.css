@@ -27,8 +27,13 @@
   border-color: transparent;
   border-radius: 8px;
   background-color: #F67599;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .cursorPoint {
   margin-left: 8%;
+  cursor: pointer;
 }
