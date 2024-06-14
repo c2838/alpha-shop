@@ -77,12 +77,14 @@ function Logo() {
 
 export default function Header() {
   return (
-    <div className={headerStyle.headerContainer}>
-      <nav className={headerStyle.navbar}>
-        <NavListSort />
-        <Logo />
-        <NavListIcon />
-      </nav>
-    </div>
+    <header>
+      <div className={headerStyle.headerContainer}>
+        <nav className={headerStyle.navbar}>
+          <NavListSort />
+          <Logo />
+          <NavListIcon />
+        </nav>
+      </div>
+    </header>
   );
 }

@@ -92,6 +92,7 @@ function FooterSocial() {
 
 export default function Footer() {
   return (
+    <footer>
       <div className={footerStyle.footerContainer}>
         <FooterLogo />
         <FooterService />
@@ -99,5 +100,6 @@ export default function Footer() {
         <FooterInfo />
         <FooterSocial />
       </div>
+    </footer>
   );
 }
