@@ -1,30 +1,50 @@
+import shippingStyle from '../style/formShipping.module.css'
+
 export default function FormShipping() {
   return (
     <form className="col col-12" data-phase="shipping">
-      <h3 className="form-title">運送方式</h3>
-      <section className="form-body col col-12">
-        <label className="radio-group col col-12" data-price="0">
-          <input id="shipping-standard" type="radio" name="shipping" checked />
-          <div className="radio-info">
-            <div className="col col-12">
+      <h3 className={shippingStyle.formTitle}>運送方式</h3>
+      <section className={shippingStyle.formBody}>
+        <div className={shippingStyle.radioGroup} data-price="0">
+          <input
+            className={shippingStyle.input}
+            id="shipping-standard"
+            type="radio"
+            name="shipping"
+          />
+          <label
+            htmlFor="shipping-standard"
+            className={shippingStyle.radioLabel}
+          ></label>
+          <div className={shippingStyle.radioInfo}>
+            <div className={shippingStyle.expressInfo}>
               <div className="text">標準運送</div>
-              <div className="price"></div>
+              <div className="price">免費</div>
             </div>
-            <div className="period col col-12">約 3~7 個工作天</div>
+            <div className={shippingStyle.expressPeriod}>約 3~7 個工作天</div>
           </div>
           <div className="radio-box-border"></div>
-        </label>
-        <label className="radio-group col col-12" data-price="500">
-          <input id="shipping-dhl" type="radio" name="shipping" />
-          <div className="radio-info">
-            <div className="col col-12">
-              <div className="text">DHL 貨運</div>
-              <div className="price"></div>
+        </div>
+        <div className={shippingStyle.radioGroup} data-price="500">
+          <input
+            className={shippingStyle.input}
+            id="shipping-dhl"
+            type="radio"
+            name="shipping"
+          />
+          <label
+            htmlFor="shipping-dhl"
+            className={shippingStyle.radioLabel}
+          ></label>
+          <div className={shippingStyle.radioInfo}>
+            <div className={shippingStyle.expressInfo}>
+              <div className={shippingStyle.dhlText}>DHL 貨運</div>
+              <div className="price">$500</div>
             </div>
-            <div className="period col col-12">48 小時內送達</div>
+            <div className={shippingStyle.expressPeriod}>48 小時內送達</div>
           </div>
           <div className="radio-box-border"></div>
-        </label>
+        </div>
       </section>
     </form>
   );

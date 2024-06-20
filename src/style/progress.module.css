@@ -8,14 +8,43 @@
 
 :global(button) {
   -webkit-appearance: none;
+  border-color: transparent;
 }
 
-.btnGroup {
+.btnGroupFirst {
   width: auto;
   padding-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btnGroupSecond {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btnGroupThird {
+  width: 100%;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.prevBtn {
+  width: 100px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .nextBtn {
@@ -24,7 +53,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-color: transparent;
   border-radius: 8px;
   background-color: #F67599;
   color: #fff;
@@ -33,7 +61,12 @@
   cursor: pointer;
 }
 
-.cursorPoint {
+.cursorPointRight {
   margin-left: 8%;
+  cursor: pointer;
+}
+
+.cursorPointLeft {
+  margin-right: 8%;
   cursor: pointer;
 }

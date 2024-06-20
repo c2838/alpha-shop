@@ -3,13 +3,13 @@ import addressStyle from '../style/formAddress.module.css'
 
 export default function FormAddress() {
   return (
-    <form className="col col-12" data-phase="address">
+    <form className={addressStyle.addFormContainer} data-phase="address">
       <h3 className={addressStyle.formTitle}>寄送地址</h3>
       <section className={addressStyle.formBody}>
         <div className={addressStyle.inputGroupSex}>
           <div className={addressStyle.inputLabel}>稱謂</div>
-          <div className={"select-container"}>
-            <select>
+          <div className="select-container">
+            <select className={addressStyle.sexSelect}>
               <option value="mr" selected>
                 先生
               </option>
@@ -20,21 +20,35 @@ export default function FormAddress() {
         </div>
         <div className={addressStyle.inputGroupName}>
           <div className={addressStyle.inputLabel}>姓名</div>
-          <input type="text" placeholder="請輸入姓名" />
+          <input
+            className={addressStyle.input}
+            type="text"
+            placeholder="請輸入姓名"
+          />
         </div>
         <div className={addressStyle.inputGroupTel}>
           <div className={addressStyle.inputLabel}>電話</div>
-          <input type="tel" placeholder="請輸入行動電話" />
+          <input
+            className={addressStyle.input}
+            type="tel"
+            placeholder="請輸入行動電話"
+          />
         </div>
         <div className={addressStyle.inputGroupMail}>
           <div className={addressStyle.inputLabel}>Email</div>
-          <input type="email" placeholder="請輸入電子郵件" />
+          <input
+            className={addressStyle.input}
+            type="email"
+            placeholder="請輸入電子郵件"
+          />
         </div>
         <div className={addressStyle.inputGroupCounty}>
           <div className={addressStyle.inputLabel}>縣市</div>
           <div className="select-container">
-            <select required>
-              <option value=""disabled selected>請選擇縣市</option>
+            <select className={addressStyle.countySelect} required>
+              <option value="" disabled selected>
+                請選擇縣市
+              </option>
               <option value="KLU">基隆市</option>
               <option value="TPH">新北市</option>
               <option value="TPE">臺北市</option>
@@ -69,7 +83,11 @@ export default function FormAddress() {
         </div>
         <div className={addressStyle.inputGroupAdd}>
           <div className={addressStyle.inputLabel}>地址</div>
-          <input type="text" placeholder="請輸入地址" />
+          <input
+            className={addressStyle.input}
+            type="text"
+            placeholder="請輸入地址"
+          />
         </div>
       </section>
     </form>
