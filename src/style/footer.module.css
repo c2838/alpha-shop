@@ -64,6 +64,9 @@
   margin-bottom: 3px;
 }
 
+.socialIconGroup {
+  display: flex;
+}
 
 .socialIcon {
   margin-right: 16px;

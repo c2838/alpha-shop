@@ -12,6 +12,7 @@ function FirstStep({ status }) {
       </>
     );
   } else {
+    // 表單完成後式樣
     return (
       <>
         <span className={stepStyle.progressIconChecked}>
@@ -25,6 +26,7 @@ function FirstStep({ status }) {
 
 function SecondStep({ status }) {
   if (status === 'address') {
+    // 未進入表單前式樣
     return (
       <>
         <span className={stepStyle.progressIcon}>
@@ -34,6 +36,7 @@ function SecondStep({ status }) {
       </>
     );
   } else if (status === "shipping") {
+    // 表單使用中式樣
     return (
       <>
         <span className={stepStyle.progressIconActive}>
@@ -44,6 +47,7 @@ function SecondStep({ status }) {
     );
   } else {
     return (
+      // 表單完成後式樣
       <>
         <span className={stepStyle.progressIconChecked}>
           <object data={completeIcon}></object>
@@ -56,6 +60,7 @@ function SecondStep({ status }) {
 
 function FinalStep({ status }) {
   if (status === 'checkout') {
+    // 表單未使用式樣
     return (
       <>
         <span className={stepStyle.progressIconActive}>
@@ -65,6 +70,7 @@ function FinalStep({ status }) {
       </>
     );
   } else {
+    // 表單使用中式樣
     return (
       <>
         <span className={stepStyle.progressIcon}>
@@ -77,7 +83,6 @@ function FinalStep({ status }) {
 }
 
 export default function Step({ status }) {
-
   return (
     <section className={stepStyle.progressContainer}>
       <span className={stepStyle.progressGroup} data-phase="address">

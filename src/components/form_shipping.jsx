@@ -1,6 +1,6 @@
 import shippingStyle from '../style/formShipping.module.css'
 
-export default function FormShipping() {
+export default function FormShipping({ shippingFee, onChangeFee }) {
   return (
     <form className="col col-12" data-phase="shipping">
       <h3 className={shippingStyle.formTitle}>運送方式</h3>
@@ -11,6 +11,9 @@ export default function FormShipping() {
             id="shipping-standard"
             type="radio"
             name="shipping"
+            value={0}
+            checked={shippingFee === "0"}
+            onChange={onChangeFee}
           />
           <label
             htmlFor="shipping-standard"
@@ -31,6 +34,9 @@ export default function FormShipping() {
             id="shipping-dhl"
             type="radio"
             name="shipping"
+            value={500}
+            checked={shippingFee === "500"}
+            onChange={onChangeFee}
           />
           <label
             htmlFor="shipping-dhl"

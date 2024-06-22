@@ -1,13 +1,14 @@
+import { useState } from 'react'
 // 匯入CSS module
 import cartStyle from '../style/cart.module.css'
 // 匯入圖片
 import minusImg from '../assets/minus.svg'
 import plusImg from '../assets/plus.svg'
-import productImg_1 from '../assets/product-1.jpg'
-import productImg_2 from "../assets/product-2.jpg";
+// import productImg_1 from '../assets/product-1.jpg'
+// import productImg_2 from "../assets/product-2.jpg";
 
 // 課程指定資料
-const products = [
+const productsData = [
   {
     id: "1",
     name: "貓咪罐罐",
@@ -30,9 +31,9 @@ function CartTitle() {
 }
 
 // 產品清單渲染用function
-function ProductsList({ products }) {
+function ProductsList({ products, onMinus, onPlus }) {
   const productsList = products.map(item => {
-      return (
+    return (
       <div
         className={cartStyle.productContainer}
         data-count={item.quantity}
@@ -44,25 +45,38 @@ function ProductsList({ products }) {
           <div className={cartStyle.productName}>{item.name}</div>
           <div className={cartStyle.productControlContainer}>
             <div className={cartStyle.productControl}>
-              <object className="product-action minus" data={minusImg}></object>
+              <img
+                className="product-action minus"
+                src={minusImg}
+                onClick={() => onMinus(products, item.id)}
+              />
               <span className={cartStyle.productCount}>{item.quantity}</span>
-              <object className="product-action minus" data={plusImg}></object>
+              <img
+                className="product-action plus"
+                src={plusImg}
+                onClick={() => onPlus(products, item.id)}
+              />
             </div>
           </div>
         </div>
-        <div className={cartStyle.productPrice}>{item.price * item.quantity}</div>
-      </div>)
+        <div className={cartStyle.productPrice}>
+          {item.price * item.quantity}
+        </div>
+      </div>
+    );
   })
   return (
     <>{productsList}</>
   )
 }
 
-function CartProductList() {
+function CartProductList({ products, onMinus, onPlus }) {
   return (
     <section className={cartStyle.productList} data-total-price="0">
       <ProductsList
-        products = {products}
+        products={products}
+        onMinus={onMinus}
+        onPlus={onPlus}
       />
       {/* 舊資料 */}
       {/* <div
@@ -105,38 +119,73 @@ function CartProductList() {
   );
 }
 
-// 計算總價格用
-function cartTotal({ product }) {
-  let total = 0;
-  products.forEach((item) => {
-    total += (item.price * item.quantity);
-  })
-  return total
-}
-
-function CartInfo() {
+function CartInfo({ shippingFee, total }) {
   return (
     <>
       <section className={cartStyle.cartInfo}>
         <div className={cartStyle.cartInfoText}>運費</div>
-        <div className={cartStyle.cartInfoPrice}>免費</div>
+        <div className={cartStyle.cartInfoPrice}>
+          {shippingFee === '500' ? '$500' : '免費'}
+        </div>
       </section>
       <section className={cartStyle.cartInfo}>
         <div className={cartStyle.cartInfoText}>小計</div>
-        <div className={cartStyle.cartInfoPrice}>{'$' + cartTotal(products)}</div>
+        <div className={cartStyle.cartInfoPrice}>${total}</div>
       </section>
     </>
   );
 }
 
 
-export default function Cart() {
+export default function Cart({ shippingFee }) {
+  const [products, setProdusts] = useState(productsData);
+  // 物品數量增加用event handler
+  function handlePlus(products, productId) {
+    const plusProducts = products.map((item) => {
+      if (item.id === productId) {
+        return { ...item, quantity: (item.quantity += 1) };
+      } else return item;
+    });
+    setProdusts(plusProducts);
+  }
+  // 物品數量減少用event handler
+  function handleMinus(products, productId) {
+    // 避免修改陣列
+    const minusProducts = products.map((item) => {
+      if (item.id === productId) {
+        // 數量為0後不會再減少
+        if (item.quantity === 0) {
+          return { ...item, quantity: 0 };
+        } else {
+          // 回傳新物件，避免直接修改
+          return { ...item, quantity: (item.quantity -= 1) };
+        }
+      } else return item; //若無修改則直接回傳
+    });
+    setProdusts(minusProducts);
+  }
+  // 計算總價用
+  function totalPrice() {
+    let total = 0;
+    products.forEach((item) => {
+      total += item.price * item.quantity;
+    });
+    // 加入運費
+    total = total + Number(shippingFee);
+    return total;
+  }
+  const total = totalPrice();
+
   return (
     <>
       <section className={cartStyle.cartContainer}>
         <CartTitle />
-        <CartProductList />
-        <CartInfo />
+        <CartProductList
+          products={products}
+          onMinus={handleMinus}
+          onPlus={handlePlus}
+        />
+        <CartInfo shippingFee={shippingFee} total={total} />
       </section>
     </>
   );

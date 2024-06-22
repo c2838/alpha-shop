@@ -9,28 +9,12 @@ function RegisterTitle() {
   return <h2 className={registerStyle.registerTitle}>結帳</h2>;
 }
 
-export default function Register() {
+export default function Register({ shippingFee, onChangeFee }) {
   const [status, setStatus] = useState('address');
-  const [progress, setProgress] = useState(1)
-  console.log(progress)
-  function handleProgressNext() {
-    setProgress(progress + 1)
-    console.log(progress);
-    if (progress === 2) {
-      setStatus('shipping')
-    } else if (progress === 3) {
-      setStatus("checkout");
-    }
-  }
-
-  function handleProgressPrev() {
-    setProgress(progress - 1)
-    console.log(progress);
-    if (progress === 2) {
-      setStatus('shipping')
-    } else if (progress === 1) {
-      setStatus("address");
-    }
+  
+  // 表單切換event handler
+  function handleProgress(form) {
+    setStatus(form)
   }
 
   return (
@@ -40,16 +24,17 @@ export default function Register() {
       data-total-price="0"
     >
       <RegisterTitle />
-      <ProgressStep 
-        status={status}
-      />
+      <ProgressStep status={status} />
       <Form 
         status={status}
+        shippingFee={shippingFee}
+        onChangeFee={onChangeFee}
       />
       <ProgressControl
         status={status}
-        onNext={handleProgressNext}
-        onPrev={handleProgressPrev}
+        onAddress={() => handleProgress("address")}
+        onShipping={() => handleProgress("shipping")}
+        onCheckout={() => handleProgress("checkout")}
       />
     </section>
   );
