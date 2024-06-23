@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // 匯入CSS module
 import cartStyle from '../style/cart.module.css'
 // 匯入圖片
@@ -108,42 +108,36 @@ function CartInfo({ shippingFee, total }) {
 
 export default function Cart({ shippingFee }) {
   const [products, setProdusts] = useState(productsData);
+  const [total, setTotal] = useState(0)
+  // 利用useEffect避免每次重新渲染都計算總價
+  useEffect(() => {
+    function totalPrice() {
+      let total = 0;
+      products.forEach((item) => {
+        total += item.price * item.quantity;
+      });
+      // 加入運費
+      total = total + Number(shippingFee);
+      return formatter.format(total);
+    }
+    setTotal(totalPrice())
+  }, [products, shippingFee])
   // 物品數量增加用event handler
   function handlePlus(products, productId) {
-    const plusProducts = products.map((item) => {
-      if (item.id === productId) {
-        return { ...item, quantity: (item.quantity += 1) };
-      } else return item;
-    });
+    const plusProducts = products.map((item) => 
+      item.id === productId ? { ...item, quantity: (item.quantity + 1) } : item
+    );
     setProdusts(plusProducts);
   }
   // 物品數量減少用event handler
   function handleMinus(products, productId) {
-    // 避免修改陣列
-    const minusProducts = products.map((item) => {
-      if (item.id === productId) {
-        // 數量為0後不會再減少
-        if (item.quantity === 0) {
-          return { ...item, quantity: 0 };
-        } else {
-          // 回傳新物件，避免直接修改
-          return { ...item, quantity: (item.quantity -= 1) };
-        }
-      } else return item; //若無修改則直接回傳
-    });
+    // 回傳新陣列以避免修改陣列
+    const minusProducts = products.map((item) =>
+      // Math.max()會回傳較大值，故如果quantity < 0，回傳 0 ，避免產品下單量為負值
+      item.id === productId ? { ...item, quantity: Math.max(item.quantity - 1, 0) } : item 
+    );
     setProdusts(minusProducts);
   }
-  // 計算總價用
-  function totalPrice() {
-    let total = 0;
-    products.forEach((item) => {
-      total += item.price * item.quantity;
-    });
-    // 加入運費
-    total = total + Number(shippingFee);
-    return formatter.format(total);
-  }
-  const total = totalPrice();
 
   return (
     <>

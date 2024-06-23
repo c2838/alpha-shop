@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import addressStyle from '../style/formAddress.module.css'
+
 // 縣市option陣列
 const counties = [
   { value: "KLU", county: "基隆市" },
@@ -50,6 +51,7 @@ function CountOption({ counties }) {
 
 export default function FormAddress() {
   const [countyList, setCountyList] = useState(counties)
+  
   return (
     <form className={addressStyle.addFormContainer} data-phase="address">
       <h3 className={addressStyle.formTitle}>寄送地址</h3>
