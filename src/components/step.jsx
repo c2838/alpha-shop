@@ -16,7 +16,7 @@ function FirstStep({ status }) {
     return (
       <>
         <span className={stepStyle.progressIconChecked}>
-          <object data={completeIcon}></object>
+          <img src={completeIcon} alt="complete-icon" />
         </span>
         <span className={stepStyle.progressLabelActive}>寄送地址</span>
       </>
@@ -50,7 +50,7 @@ function SecondStep({ status }) {
       // 表單完成後式樣
       <>
         <span className={stepStyle.progressIconChecked}>
-          <object data={completeIcon}></object>
+          <img src={completeIcon} alt="complete-icon" />
         </span>
         <span className={stepStyle.progressLabelActive}>運送方式</span>
       </>

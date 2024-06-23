@@ -81,9 +81,9 @@ function FooterSocial() {
      <div className={footerStyle.sectionContent}>
        <div className={footerStyle.telInfo}>+886 02123-45678</div>
        <div className={footerStyle.socialIconGroup}>
-         <object data={fbImg} className={footerStyle.socialIcon}></object>
-         <object data={igImg} className={footerStyle.socialIcon}></object>
-         <object data={whImg} className={footerStyle.socialIcon}></object>
+         <img src={fbImg} className={footerStyle.socialIcon} alt="facebook" />
+         <img src={igImg} className={footerStyle.socialIcon} alt="instagram" />
+         <img src={whImg} className={footerStyle.socialIcon} alt="whatsapp" />
        </div>
      </div>
    </section>

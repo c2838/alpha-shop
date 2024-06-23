@@ -4,8 +4,6 @@ import cartStyle from '../style/cart.module.css'
 // 匯入圖片
 import minusImg from '../assets/minus.svg'
 import plusImg from '../assets/plus.svg'
-// import productImg_1 from '../assets/product-1.jpg'
-// import productImg_2 from "../assets/product-2.jpg";
 
 // 課程指定資料
 const productsData = [
@@ -25,7 +23,15 @@ const productsData = [
   },
 ];
 
+// 格式化數字用
+const formatter = new Intl.NumberFormat("zh-tw", {
+  style: "currency",
+  currency: "TWD",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
 
+// 購物車標題渲染用
 function CartTitle() {
   return <h3 className={cartStyle.cartTitle}>購物籃</h3>;
 }
@@ -33,6 +39,8 @@ function CartTitle() {
 // 產品清單渲染用function
 function ProductsList({ products, onMinus, onPlus }) {
   const productsList = products.map(item => {
+    // 單項產品總計金額
+    const formatProductPrice = formatter.format(item.price * item.quantity)
     return (
       <div
         className={cartStyle.productContainer}
@@ -59,9 +67,7 @@ function ProductsList({ products, onMinus, onPlus }) {
             </div>
           </div>
         </div>
-        <div className={cartStyle.productPrice}>
-          {item.price * item.quantity}
-        </div>
+        <div className={cartStyle.productPrice}>{formatProductPrice}</div>
       </div>
     );
   })
@@ -78,43 +84,6 @@ function CartProductList({ products, onMinus, onPlus }) {
         onMinus={onMinus}
         onPlus={onPlus}
       />
-      {/* 舊資料 */}
-      {/* <div
-        className={cartStyle.productContainer}
-        data-count="0"
-        data-price="3999"
-      >
-        <img className={cartStyle.imgContainer} src={productImg_1} />
-        <div className={cartStyle.productInfo}>
-          <div className={cartStyle.productName}>破壞補丁修身牛仔褲</div>
-          <div className={cartStyle.productControlContainer}>
-            <div className={cartStyle.productControl}>
-              <object className="product-action minus" data={minusImg}></object>
-              <span className={cartStyle.productCount}>0</span>
-              <object className="product-action minus" data={plusImg}></object>
-            </div>
-          </div>
-        </div>
-        <div className={cartStyle.productPrice}>$3999</div>
-      </div>
-      <div
-        className={cartStyle.productContainer}
-        data-count="0"
-        data-price="1299"
-      >
-        <img className={cartStyle.imgContainer} src={productImg_2} />
-        <div className={cartStyle.productInfo}>
-          <div className={cartStyle.productName}>刷色直筒牛仔褲</div>
-          <div className={cartStyle.productControlContainer}>
-            <div className={cartStyle.productControl}>
-              <object className="product-action minus" data={minusImg}></object>
-              <span className={cartStyle.productCount}>0</span>
-              <object className="product-action minus" data={plusImg}></object>
-            </div>
-          </div>
-        </div>
-        <div className={cartStyle.productPrice}>$1299</div>
-      </div> */}
     </section>
   );
 }
@@ -130,7 +99,7 @@ function CartInfo({ shippingFee, total }) {
       </section>
       <section className={cartStyle.cartInfo}>
         <div className={cartStyle.cartInfoText}>小計</div>
-        <div className={cartStyle.cartInfoPrice}>${total}</div>
+        <div className={cartStyle.cartInfoPrice}>{total}</div>
       </section>
     </>
   );
@@ -172,7 +141,7 @@ export default function Cart({ shippingFee }) {
     });
     // 加入運費
     total = total + Number(shippingFee);
-    return total;
+    return formatter.format(total);
   }
   const total = totalPrice();
 

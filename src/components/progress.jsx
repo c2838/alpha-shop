@@ -10,10 +10,11 @@ export default function Progress({ status, onAddress, onShipping, onCheckout }) 
         <section className={progressStyle.btnGroupFirst} data-phase="address">
           <button className={progressStyle.nextBtn} onClick={onShipping}>
             下一步
-            <object
-              data={rightArrow}
+            <img
+              src={rightArrow}
               className={progressStyle.cursorPointRight}
-            ></object>
+              alt="right-arrow"
+            />
           </button>
         </section>
       )}
@@ -21,18 +22,20 @@ export default function Progress({ status, onAddress, onShipping, onCheckout }) 
       {status === "shipping" && (
         <section className={progressStyle.btnGroupSecond} data-phase="shipping">
           <button className={progressStyle.prevBtn} onClick={onAddress}>
-            <object
-              data={leftArrow}
+            <img
+              src={leftArrow}
               className={progressStyle.cursorPointLeft}
-            ></object>
+              alt="left-arrow"
+            />
             上一步
           </button>
           <button className={progressStyle.nextBtn} onClick={onCheckout}>
             下一步
-            <object
-              data={rightArrow}
+            <img
+              src={rightArrow}
               className={progressStyle.cursorPointRight}
-            ></object>
+              alt="right-arrow"
+            />
           </button>
         </section>
       )}
@@ -43,10 +46,11 @@ export default function Progress({ status, onAddress, onShipping, onCheckout }) 
           data-phase="credit-card"
         >
           <button className={progressStyle.prevBtn} onClick={onShipping}>
-            <object
-              data={leftArrow}
+            <img
+              src={leftArrow}
               className={progressStyle.cursorPointLeft}
-            ></object>
+              alt="left-arrow"
+            />
             上一步
           </button>
           <button className={progressStyle.nextBtn}>確認下單</button>

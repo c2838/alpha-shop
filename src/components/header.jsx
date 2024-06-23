@@ -41,23 +41,15 @@ function NavListIcon() {
     <ul className={headerStyle.navbarListIcon}>
       {/* search */}
       <li className={headerStyle.navIconItem}>
-        <object
-          data={searchImg}
-          className={headerStyle.navIconImg}
-          type="image/svg+xml"
-        ></object>
+        <img src={searchImg} alt="search" className={headerStyle.navIconImg} />
       </li>
       {/* cart */}
       <li className={headerStyle.navIconItem}>
-        <object
-          data={cartImg}
-          className={headerStyle.navIconImg}
-          type="image/svg+xml"
-        ></object>
+        <img src={cartImg} alt="search" className={headerStyle.navIconImg} />
       </li>
       <li id="theme-toggle" className={headerStyle.navIconItem}>
         {/* moon */}
-        <object data={moonImg} className={headerStyle.navIconImg}></object>
+        <img src={moonImg} alt="search" className={headerStyle.navIconImg} />
         {/* sun */}
         {/* <object data="./public/icons/sun.svg" className="nav-icon cursor-point">
           </object> */}
@@ -69,7 +61,7 @@ function NavListIcon() {
 function Logo() {
     return (
       <a className={headerStyle.logo} href="#">
-        <img src={logoImg} className={headerStyle.logoImg} />
+        <img src={logoImg} className={headerStyle.logoImg} alt="logo" />
       </a>
     );
 }

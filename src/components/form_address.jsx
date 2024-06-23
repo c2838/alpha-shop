@@ -1,7 +1,55 @@
+import { useState } from 'react'
 import addressStyle from '../style/formAddress.module.css'
+// 縣市option陣列
+const counties = [
+  { value: "KLU", county: "基隆市" },
+  { value: "TPH", county: "新北市" },
+  { value: "TPE", county: "台北市" },
+  { value: "TYC", county: "桃園市" },
+  { value: "HSH", county: "新竹縣" },
+  { value: "HSC", county: "新竹市" },
+  { value: "MAC", county: "苗栗縣" },
+  { value: "MAL", county: "苗栗市" },
+  { value: "TXG", county: "臺中市" },
+  { value: "CWH", county: "彰化縣" },
+  { value: "CWS", county: "彰化市" },
+  { value: "NTC", county: "南投市" },
+  { value: "NTO", county: "南投縣" },
+  { value: "CHY", county: "嘉義縣" },
+  { value: "CYI", county: "嘉義市" },
+  { value: "TNN", county: "臺南市" },
+  { value: "KHH", county: "高雄市" },
+  { value: "IUS", county: "屏東縣" },
+  { value: "PTS", county: "屏東市" },
+  { value: "ILN", county: "宜蘭縣" },
+  { value: "ILC", county: "宜蘭市" },
+  { value: "HWA", county: "花蓮縣" },
+  { value: "HWC", county: "花蓮市" },
+  { value: "TTC", county: "台東市" },
+  { value: "TTT", county: "台東縣" },
+  { value: "PEH", county: "澎湖縣" },
+  { value: "KMN", county: "金門縣" },
+  { value: "LNN", county: "連江縣" },
+];
+
+// 渲染縣市option函式
+function CountOption({ counties }) {
+  const ConutyList = counties.map(item => {
+    return (
+      <option key={item.value} value={item.value}>{item.county}</option>
+    )
+  })
+  return (
+    <select className={addressStyle.countySelect} required>
+      <option value="" disabled selected>請選擇縣市</option>
+      {ConutyList}
+    </select>
+  );
+}
 
 
 export default function FormAddress() {
+  const [countyList, setCountyList] = useState(counties)
   return (
     <form className={addressStyle.addFormContainer} data-phase="address">
       <h3 className={addressStyle.formTitle}>寄送地址</h3>
@@ -45,40 +93,7 @@ export default function FormAddress() {
         <div className={addressStyle.inputGroupCounty}>
           <div className={addressStyle.inputLabel}>縣市</div>
           <div className="select-container">
-            <select className={addressStyle.countySelect} required>
-              <option value="" disabled selected>
-                請選擇縣市
-              </option>
-              <option value="KLU">基隆市</option>
-              <option value="TPH">新北市</option>
-              <option value="TPE">臺北市</option>
-              <option value="TYC">桃園市</option>
-              <option value="HSH">新竹縣</option>
-              <option value="HSC">新竹市</option>
-              <option value="MAC">苗栗市</option>
-              <option value="MAL">苗栗縣</option>
-              <option value="TXG">臺中市</option>
-              <option value="CWH">彰化縣</option>
-              <option value="CWS">彰化市</option>
-              <option value="NTC">南投市</option>
-              <option value="NTO">南投縣</option>
-              <option value="YLH">雲林縣</option>
-              <option value="CHY">嘉義縣</option>
-              <option value="CYI">嘉義市</option>
-              <option value="TNN">臺南市</option>
-              <option value="KHH">高雄市</option>
-              <option value="IUH">屏東縣</option>
-              <option value="PTS">屏東市</option>
-              <option value="ILN">宜蘭縣</option>
-              <option value="ILC">宜蘭市</option>
-              <option value="HWA">花蓮縣</option>
-              <option value="HWC">花蓮市</option>
-              <option value="TTC">臺東市</option>
-              <option value="TTT">臺東縣</option>
-              <option value="PEH">澎湖縣</option>
-              <option value="KMN">金門縣</option>
-              <option value="LNN">連江縣</option>
-            </select>
+            <CountOption counties={countyList} />
           </div>
         </div>
         <div className={addressStyle.inputGroupAdd}>
