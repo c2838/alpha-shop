@@ -13,14 +13,16 @@ function RegisterTitle() {
 
 export default function Register() {
   const info = useContext(CheckoutInfoContext)
+  // 傳入小計金額
   const { total } = useContext(ProductsDataContext);
+  // 設定status初始狀態
   const [status, setStatus] = useState('address');
   const [checkoutInfo, setCheckInfo] = useState(info)
   // 表單切換event handler
   function handleProgress(form) {
     setStatus(form)
   }
-  
+  // 信用卡結帳資料handle eventer
   function handleCheckout(event) {
     const { name, value } = event.target
     setCheckInfo({
@@ -28,7 +30,7 @@ export default function Register() {
       [name]: value
     })
   }
-
+  // 確認結帳handle eventer
   function handleSubmit(event) {
     event.preventDefault()
     console.log(`

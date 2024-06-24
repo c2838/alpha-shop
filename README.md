@@ -39,4 +39,4 @@ npm run dev //啟動vite部署
 
 
 ## 專案畫面
-待更新
+![Alt text](https://i.imgur.com/5dWQQ2x.png)
