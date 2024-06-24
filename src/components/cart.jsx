@@ -1,28 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 // 匯入CSS module
 import cartStyle from '../style/cart.module.css'
 // 匯入圖片
 import minusImg from '../assets/minus.svg'
 import plusImg from '../assets/plus.svg'
-
 // 課程指定資料
-const productsData = [
-  {
-    id: "1",
-    name: "貓咪罐罐",
-    img: "https://picsum.photos/300/300?text=1",
-    price: 100,
-    quantity: 2,
-  },
-  {
-    id: "2",
-    name: "貓咪干干",
-    img: "https://picsum.photos/300/300?text=2",
-    price: 200,
-    quantity: 1,
-  },
-];
+import { ProductsDataContext } from './cartContext'
 
+import { ShippingFeeContext } from './mainContent'
 // 格式化數字用
 const formatter = new Intl.NumberFormat("zh-tw", {
   style: "currency",
@@ -36,11 +21,18 @@ function CartTitle() {
   return <h3 className={cartStyle.cartTitle}>購物籃</h3>;
 }
 
-// 產品清單渲染用function
-function ProductsList({ products, onMinus, onPlus }) {
-  const productsList = products.map(item => {
+// 產品清單渲染用
+function CartProductsList() {
+  // 使用context傳入資料與handle eventer
+  const {
+    products,
+    handleMinus: onMinus,
+    handlePlus: onPlus,
+  } = useContext(ProductsDataContext);
+
+  const productsList = products.map((item) => {
     // 單項產品總計金額
-    const formatProductPrice = formatter.format(item.price * item.quantity)
+    const formatProductPrice = formatter.format(item.price * item.quantity);
     return (
       <div
         className={cartStyle.productContainer}
@@ -70,25 +62,17 @@ function ProductsList({ products, onMinus, onPlus }) {
         <div className={cartStyle.productPrice}>{formatProductPrice}</div>
       </div>
     );
-  })
-  return (
-    <>{productsList}</>
-  )
-}
-
-function CartProductList({ products, onMinus, onPlus }) {
+  });
   return (
     <section className={cartStyle.productList} data-total-price="0">
-      <ProductsList
-        products={products}
-        onMinus={onMinus}
-        onPlus={onPlus}
-      />
+      {productsList}
     </section>
   );
 }
 
-function CartInfo({ shippingFee, total }) {
+
+function CartInfo({ total }) {
+  const { shippingFee } = useContext(ShippingFeeContext);
   return (
     <>
       <section className={cartStyle.cartInfo}>
@@ -106,11 +90,17 @@ function CartInfo({ shippingFee, total }) {
 }
 
 
-export default function Cart({ shippingFee }) {
+export default function Cart() {
+  // 取得商品資料
+  const productsData = useContext(ProductsDataContext)
+  // 取得運費金額
+  const { shippingFee } = useContext(ShippingFeeContext);
+  // state渲染宣告
   const [products, setProdusts] = useState(productsData);
   const [total, setTotal] = useState(0)
   // 利用useEffect避免每次重新渲染都計算總價
   useEffect(() => {
+    // 計算總價函式
     function totalPrice() {
       let total = 0;
       products.forEach((item) => {
@@ -141,15 +131,14 @@ export default function Cart({ shippingFee }) {
 
   return (
     <>
-      <section className={cartStyle.cartContainer}>
-        <CartTitle />
-        <CartProductList
-          products={products}
-          onMinus={handleMinus}
-          onPlus={handlePlus}
-        />
-        <CartInfo shippingFee={shippingFee} total={total} />
-      </section>
+      <ProductsDataContext.Provider value={{products, handleMinus, handlePlus}}>
+        <section className={cartStyle.cartContainer}>
+          <CartTitle />
+          <CartProductsList />
+          {/* total只有往下傳一階層，我覺得似乎沒有需要特別寫在context內，若有需要改進再請助教提醒~ */}
+          <CartInfo total={total} /> 
+        </section>
+      </ProductsDataContext.Provider>
     </>
   );
 }

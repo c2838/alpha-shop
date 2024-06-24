@@ -1,3 +1,4 @@
+// 匯入不同部分表單
 import FormAddress from "./form_address";
 import FormShipping from "./form_shipping"
 import FormCheckout from "./form_checkout"
@@ -5,7 +6,7 @@ import formStyle from "../style/form.module.css"
 
 
 
-export default function Form({ status, shippingFee, onChangeFee }) {
+export default function Form({ status }) {
   // 判斷狀態用函式
   function statusJudge(status) {
     if (status === "address") {
@@ -20,7 +21,7 @@ export default function Form({ status, shippingFee, onChangeFee }) {
 
   return (
     <section className={formStyle.formContainer}>
-      <Form shippingFee={shippingFee} onChangeFee={onChangeFee} />
+      <Form />
     </section>
   );
 }

@@ -34,7 +34,7 @@ const counties = [
 ];
 
 // 渲染縣市option函式
-function CountOption({ counties }) {
+function CountyOption({ counties }) {
   const ConutyList = counties.map(item => {
     return (
       <option key={item.value} value={item.value}>{item.county}</option>
@@ -51,7 +51,7 @@ function CountOption({ counties }) {
 
 export default function FormAddress() {
   const [countyList, setCountyList] = useState(counties)
-  
+
   return (
     <form className={addressStyle.addFormContainer} data-phase="address">
       <h3 className={addressStyle.formTitle}>寄送地址</h3>
@@ -95,7 +95,7 @@ export default function FormAddress() {
         <div className={addressStyle.inputGroupCounty}>
           <div className={addressStyle.inputLabel}>縣市</div>
           <div className="select-container">
-            <CountOption counties={countyList} />
+            <CountyOption counties={countyList} />
           </div>
         </div>
         <div className={addressStyle.inputGroupAdd}>
