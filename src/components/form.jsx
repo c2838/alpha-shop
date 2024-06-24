@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { CheckoutInfoContext } from "./Register";
 // 匯入不同部分表單
 import FormAddress from "./form_address";
 import FormShipping from "./form_shipping"
@@ -6,7 +8,7 @@ import formStyle from "../style/form.module.css"
 
 
 
-export default function Form({ status }) {
+export default function Form() {
   // 判斷狀態用函式
   function statusJudge(status) {
     if (status === "address") {
@@ -17,6 +19,8 @@ export default function Form({ status }) {
       return FormCheckout;
     }
   }
+  
+  const { status } = useContext(CheckoutInfoContext)
   const Form = statusJudge(status);
 
   return (

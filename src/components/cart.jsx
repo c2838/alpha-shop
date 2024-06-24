@@ -1,20 +1,15 @@
-import { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 // 匯入CSS module
 import cartStyle from '../style/cart.module.css'
 // 匯入圖片
 import minusImg from '../assets/minus.svg'
 import plusImg from '../assets/plus.svg'
 // 課程指定資料
-import { ProductsDataContext } from './cartContext'
-
+import { ProductsDataContext, formatter } from './cartContext'
+// 傳入運費用
 import { ShippingFeeContext } from './mainContent'
 // 格式化數字用
-const formatter = new Intl.NumberFormat("zh-tw", {
-  style: "currency",
-  currency: "TWD",
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-});
+
 
 // 購物車標題渲染用
 function CartTitle() {
@@ -71,8 +66,9 @@ function CartProductsList() {
 }
 
 
-function CartInfo({ total }) {
+function CartInfo() {
   const { shippingFee } = useContext(ShippingFeeContext);
+  const { total } = useContext(ProductsDataContext)
   return (
     <>
       <section className={cartStyle.cartInfo}>
@@ -91,54 +87,13 @@ function CartInfo({ total }) {
 
 
 export default function Cart() {
-  // 取得商品資料
-  const productsData = useContext(ProductsDataContext)
-  // 取得運費金額
-  const { shippingFee } = useContext(ShippingFeeContext);
-  // state渲染宣告
-  const [products, setProdusts] = useState(productsData);
-  const [total, setTotal] = useState(0)
-  // 利用useEffect避免每次重新渲染都計算總價
-  useEffect(() => {
-    // 計算總價函式
-    function totalPrice() {
-      let total = 0;
-      products.forEach((item) => {
-        total += item.price * item.quantity;
-      });
-      // 加入運費
-      total = total + Number(shippingFee);
-      return formatter.format(total);
-    }
-    setTotal(totalPrice())
-  }, [products, shippingFee])
-  // 物品數量增加用event handler
-  function handlePlus(products, productId) {
-    const plusProducts = products.map((item) => 
-      item.id === productId ? { ...item, quantity: (item.quantity + 1) } : item
-    );
-    setProdusts(plusProducts);
-  }
-  // 物品數量減少用event handler
-  function handleMinus(products, productId) {
-    // 回傳新陣列以避免修改陣列
-    const minusProducts = products.map((item) =>
-      // Math.max()會回傳較大值，故如果quantity < 0，回傳 0 ，避免產品下單量為負值
-      item.id === productId ? { ...item, quantity: Math.max(item.quantity - 1, 0) } : item 
-    );
-    setProdusts(minusProducts);
-  }
-
   return (
     <>
-      <ProductsDataContext.Provider value={{products, handleMinus, handlePlus}}>
-        <section className={cartStyle.cartContainer}>
-          <CartTitle />
-          <CartProductsList />
-          {/* total只有往下傳一階層，我覺得似乎沒有需要特別寫在context內，若有需要改進再請助教提醒~ */}
-          <CartInfo total={total} /> 
-        </section>
-      </ProductsDataContext.Provider>
+      <section className={cartStyle.cartContainer}>
+        <CartTitle />
+        <CartProductsList />
+        <CartInfo /> 
+      </section>
     </>
   );
 }

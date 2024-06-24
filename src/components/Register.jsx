@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { CheckoutInfoContext } from './Register.js'
+import { ProductsDataContext } from './cartContext.js'
 import Step from './step.jsx'
 import Form from './form.jsx'
 import Progress from './progress.jsx'
@@ -10,29 +12,46 @@ function RegisterTitle() {
 }
 
 export default function Register() {
-  // status都只往下傳一層，我覺得似乎無特別需要使用context，若需改進請助教再提醒~
+  const info = useContext(CheckoutInfoContext)
+  const { total } = useContext(ProductsDataContext);
   const [status, setStatus] = useState('address');
-  
+  const [checkoutInfo, setCheckInfo] = useState(info)
   // 表單切換event handler
   function handleProgress(form) {
     setStatus(form)
   }
+  
+  function handleCheckout(event) {
+    const { name, value } = event.target
+    setCheckInfo({
+      ...checkoutInfo,
+      [name]: value
+    })
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    console.log(`
+      信用卡使用者: ${checkoutInfo.userName}
+      信用卡卡號: ${checkoutInfo.cardNumber}
+      信用卡有效期限: ${checkoutInfo.cardDate}
+      信用卡cvc/ccc: ${checkoutInfo.cardCvc}
+      總計金額: ${total}
+      `);
+  }
 
   return (
-    <section
-      className={registerStyle.registerContainer}
-      data-phase="1"
-      data-total-price="0"
-    >
-      <RegisterTitle />
-      <Step status={status} />
-      <Form status={status} />
-      <Progress
-        status={status}
-        onAddress={() => handleProgress("address")}
-        onShipping={() => handleProgress("shipping")}
-        onCheckout={() => handleProgress("checkout")}
-      />
-    </section>
+    <CheckoutInfoContext.Provider value={{ status, checkoutInfo, handleCheckout, handleSubmit, handleProgress }}>
+      <section
+        className={registerStyle.registerContainer}
+        data-phase="1"
+        data-total-price={total}
+      >
+        <RegisterTitle />
+        <Step />
+        <Form />
+        <Progress />
+      </section>
+    </CheckoutInfoContext.Provider>
   );
 }

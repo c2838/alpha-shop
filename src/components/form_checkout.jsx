@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import checkoutStyle from '../style/formCheckout.module.css'
+import { CheckoutInfoContext } from './Register';
 
 export default function FormCheckout() {
+  const { checkoutInfo, handleCheckout: onCheckout } = useContext(CheckoutInfoContext)
   return (
     <form className="col col-12" data-phase="credit-card">
       <h3 className={checkoutStyle.formTitle}>付款資訊</h3>
@@ -12,6 +15,9 @@ export default function FormCheckout() {
               className={checkoutStyle.input}
               type="text"
               placeholder="John Doe"
+              name="userName"
+              value={checkoutInfo.userName}
+              onChange={onCheckout}
             />
           </div>
         </div>
@@ -22,6 +28,9 @@ export default function FormCheckout() {
               className={checkoutStyle.input}
               type="text"
               placeholder="1111 2222 3333 4444"
+              name="cardNumber"
+              value={checkoutInfo.cardNumber}
+              onChange={onCheckout}
             />
           </div>
         </div>
@@ -32,6 +41,9 @@ export default function FormCheckout() {
               className={checkoutStyle.inputDate}
               type="text"
               placeholder="MM/YY"
+              name="cardDate"
+              value={checkoutInfo.cardDate}
+              onChange={onCheckout}
             />
           </div>
           <div className="input-group input-w-lg-3 input-w-sm-s3">
@@ -40,6 +52,9 @@ export default function FormCheckout() {
               className={checkoutStyle.inputCvc}
               type="text"
               placeholder="123"
+              name="cardCvc"
+              value={checkoutInfo.cardCvc}
+              onChange={onCheckout}
             />
           </div>
         </div>

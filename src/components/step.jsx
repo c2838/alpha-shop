@@ -1,7 +1,10 @@
+import { useContext } from 'react';
+import { CheckoutInfoContext } from './Register';
 import stepStyle from '../style/step.module.css'
 import completeIcon from '../assets/pg-complete.svg'
 
-function FirstStep({ status }) {
+function FirstStep() {
+  const { status } = useContext(CheckoutInfoContext)
   if (status === 'address') {
     return (
       <>
@@ -24,7 +27,8 @@ function FirstStep({ status }) {
   }
 }
 
-function SecondStep({ status }) {
+function SecondStep() {
+  const { status } = useContext(CheckoutInfoContext);
   if (status === 'address') {
     // 未進入表單前式樣
     return (
@@ -58,7 +62,8 @@ function SecondStep({ status }) {
   }
 }
 
-function FinalStep({ status }) {
+function FinalStep() {
+  const { status } = useContext(CheckoutInfoContext);
   if (status === 'checkout') {
     // 表單未使用式樣
     return (
@@ -82,19 +87,19 @@ function FinalStep({ status }) {
   }
 }
 
-export default function Step({ status }) {
+export default function Step() {
   return (
     <section className={stepStyle.progressContainer}>
       <span className={stepStyle.progressGroup} data-phase="address">
-        <FirstStep status={status} />
+        <FirstStep />
       </span>
       <span className={stepStyle.progressLine} data-order="1"></span>
       <span className={stepStyle.progressGroup} data-phase="shipping">
-       <SecondStep status={status}/>
+       <SecondStep />
       </span>
       <span className={stepStyle.progressLine} data-order="2"></span>
       <span className={stepStyle.progressGroup} data-phase="credit-card">
-        <FinalStep status={status} />
+        <FinalStep />
       </span>
     </section>
   );
