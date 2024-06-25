@@ -13,7 +13,7 @@ function CountyOption() {
   })
   return (
     <select className={addressStyle.countySelect} required>
-      <option value="" disabled selected>請選擇縣市</option>
+      <option value="" selected disabled>請選擇縣市</option>
       {ConutyList}
     </select>
   );
@@ -29,9 +29,7 @@ export default function FormAddress() {
           <div className={addressStyle.inputLabel}>稱謂</div>
           <div className="select-container">
             <select className={addressStyle.sexSelect}>
-              <option value="mr" selected>
-                先生
-              </option>
+              <option value="mr" defaultValue="mr">先生</option>
               <option value="ms">女士</option>
               <option value="mx">不明</option>
             </select>

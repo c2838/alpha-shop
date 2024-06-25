@@ -12,6 +12,7 @@ function RegisterTitle() {
 }
 
 export default function Register() {
+  // 使用預設信用卡資料
   const info = useContext(CheckoutInfoContext)
   // 傳入小計金額
   const { total } = useContext(ProductsDataContext);
