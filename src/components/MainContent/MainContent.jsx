@@ -1,10 +1,10 @@
-import { useState, useContext, useEffect } from 'react'
-import { ShippingFeeContext } from './mainContent.js'
-import { ProductsDataContext, formatter } from "./cartContext";
-import Register from "./Register.jsx"
-import Cart from "./cart.jsx"
-import mainStyle from "../style/mainContent.module.css"
-
+import { useState, useContext, useEffect } from "react";
+import { ShippingFeeContext } from "../../context/MainContentContext.js";
+import { ProductsDataContext } from "../../context/CartContext.js";
+import { formatter } from "../../context/ConstContext";
+import Register from "../Register";
+import Cart from "../Cart";
+import mainStyle from "./mainContent.module.css";
 
 export default function Main() {
   // 取得運費
@@ -58,8 +58,10 @@ export default function Main() {
 
   return (
     <main>
-      <ShippingFeeContext.Provider value={{ shippingFee, handleRadio }}> 
-        <ProductsDataContext.Provider value={{ products, total, handleMinus, handlePlus }}>
+      <ShippingFeeContext.Provider value={{ shippingFee, handleRadio }}>
+        <ProductsDataContext.Provider
+          value={{ products, total, handleMinus, handlePlus }}
+        >
           <div className={mainStyle.mainContainer}>
             <Register />
             <Cart />

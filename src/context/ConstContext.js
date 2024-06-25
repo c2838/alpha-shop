@@ -1,12 +1,5 @@
 import { createContext } from "react";
 
-const checkoutInfo = {
-  userName: '',
-  cardNumber: '',
-  cardDate: '',
-  cardCvc: ''
-}
-
 const counties = [
   { value: "KLU", county: "基隆市" },
   { value: "TPH", county: "新北市" },
@@ -38,5 +31,11 @@ const counties = [
   { value: "LNN", county: "連江縣" },
 ];
 
-export const CheckoutInfoContext = createContext(checkoutInfo)
-export const CountiesContext = createContext(counties)
+export const formatter = new Intl.NumberFormat("zh-tw", {
+  style: "currency",
+  currency: "TWD",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+export const CountiesContext = createContext(counties);

@@ -1,9 +1,10 @@
-import { useContext } from 'react';
-import checkoutStyle from '../style/formCheckout.module.css'
-import { CheckoutInfoContext } from './Register';
+import { useContext } from "react";
+import checkoutStyle from "./formCheckout.module.css";
+import { CheckoutInfoContext } from "../../context/RegisterContext";
 
 export default function FormCheckout() {
-  const { checkoutInfo, handleCheckout: onCheckout } = useContext(CheckoutInfoContext)
+  const { checkoutInfo, handleCheckout: onCheckout } =
+    useContext(CheckoutInfoContext);
   return (
     <form className="col col-12" data-phase="credit-card">
       <h3 className={checkoutStyle.formTitle}>付款資訊</h3>

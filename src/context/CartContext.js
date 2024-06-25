@@ -17,11 +17,4 @@ const productsData = [
   },
 ];
 
-export const formatter = new Intl.NumberFormat("zh-tw", {
-  style: "currency",
-  currency: "TWD",
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-});
-
 export const ProductsDataContext = createContext(productsData)

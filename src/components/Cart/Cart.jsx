@@ -1,16 +1,15 @@
-import { useContext } from 'react'
+import { useContext } from "react";
 // 匯入CSS module
-import cartStyle from '../style/cart.module.css'
+import cartStyle from "./cart.module.css";
 // 匯入圖片
-import minusImg from '../assets/minus.svg'
-import plusImg from '../assets/plus.svg'
+import minusImg from "../../assets/minus.svg";
+import plusImg from "../../assets/plus.svg";
 // 課程指定資料
-import { ProductsDataContext, formatter } from './cartContext'
+import { ProductsDataContext } from "../../context/CartContext";
 // 傳入運費用
-import { ShippingFeeContext } from './mainContent'
+import { ShippingFeeContext } from "../../context/MainContentContext";
 // 格式化數字用
-
-
+import { formatter } from "../../context/ConstContext";
 // 購物車標題渲染用
 function CartTitle() {
   return <h3 className={cartStyle.cartTitle}>購物籃</h3>;
@@ -65,16 +64,15 @@ function CartProductsList() {
   );
 }
 
-
 function CartInfo() {
   const { shippingFee } = useContext(ShippingFeeContext);
-  const { total } = useContext(ProductsDataContext)
+  const { total } = useContext(ProductsDataContext);
   return (
     <>
       <section className={cartStyle.cartInfo}>
         <div className={cartStyle.cartInfoText}>運費</div>
         <div className={cartStyle.cartInfoPrice}>
-          {shippingFee === '500' ? '$500' : '免費'}
+          {shippingFee === "500" ? "$500" : "免費"}
         </div>
       </section>
       <section className={cartStyle.cartInfo}>
@@ -85,14 +83,13 @@ function CartInfo() {
   );
 }
 
-
 export default function Cart() {
   return (
     <>
       <section className={cartStyle.cartContainer}>
         <CartTitle />
         <CartProductsList />
-        <CartInfo /> 
+        <CartInfo />
       </section>
     </>
   );

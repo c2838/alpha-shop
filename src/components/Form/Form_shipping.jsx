@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { ShippingFeeContext } from "./mainContent";
-import shippingStyle from '../style/formShipping.module.css'
-
+import { ShippingFeeContext } from "../../context/MainContentContext";
+import shippingStyle from "./formShipping.module.css";
 
 export default function FormShipping() {
   // 使用context傳入運費變數與handle eventer
-  const { shippingFee, handleRadio: onChangeFee} = useContext(ShippingFeeContext);
+  const { shippingFee, handleRadio: onChangeFee } =
+    useContext(ShippingFeeContext);
 
   return (
     <form className="col col-12" data-phase="shipping">

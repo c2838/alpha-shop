@@ -1,24 +1,27 @@
-import { useContext } from 'react'
-import { CountiesContext } from './Register';
-import addressStyle from '../style/formAddress.module.css'
+import { useContext } from "react";
+import { CountiesContext } from "../../context/ConstContext";
+import addressStyle from "./formAddress.module.css";
 
 // 渲染縣市option函式
 function CountyOption() {
   // 輸入縣市資料
   const counties = useContext(CountiesContext);
-  const ConutyList = counties.map(item => {
-    return (
-      <option key={item.value} value={item.value}>{item.county}</option>
-    )
-  })
+  // 渲染縣市option
+  const ConutyList = counties.map((item) => 
+    <option key={item.value} value={item.value}>
+      {item.county}
+    </option>
+  );
+
   return (
-    <select className={addressStyle.countySelect} required>
-      <option value="" selected disabled>請選擇縣市</option>
+    <select className={addressStyle.countySelect} defaultValue="" required>
+      <option value="" disabled>
+        請選擇縣市
+      </option>
       {ConutyList}
     </select>
   );
 }
-
 
 export default function FormAddress() {
   return (
@@ -28,8 +31,8 @@ export default function FormAddress() {
         <div className={addressStyle.inputGroupSex}>
           <div className={addressStyle.inputLabel}>稱謂</div>
           <div className="select-container">
-            <select className={addressStyle.sexSelect}>
-              <option value="mr" defaultValue="mr">先生</option>
+            <select className={addressStyle.sexSelect} defaultValue="mr">
+              <option value="mr">先生</option>
               <option value="ms">女士</option>
               <option value="mx">不明</option>
             </select>

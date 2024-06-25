@@ -1,8 +1,8 @@
-import logoImg from '../assets/logo.svg'
-import searchImg from '../assets/search.svg'
-import cartImg from '../assets/cart.svg';
-import moonImg from '../assets/moon.svg';
-import headerStyle from '../style/header.module.css'
+import logoImg from '../../assets/logo.svg'
+import searchImg from "../../assets/search.svg";
+import cartImg from "../../assets/cart.svg";
+import moonImg from "../../assets/moon.svg";
+import headerStyle from './header.module.css'
 
 function NavListSort() {
   return (

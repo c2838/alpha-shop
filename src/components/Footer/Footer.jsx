@@ -1,8 +1,8 @@
-import logoImg from '../assets/logo.svg'
-import fbImg from "../assets/facebook.svg";
-import igImg from "../assets/instagram.svg";
-import whImg from "../assets/whatsapp.svg";
-import footerStyle from '../style/footer.module.css'
+import logoImg from '../../assets/logo.svg'
+import fbImg from "../../assets/facebook.svg";
+import igImg from "../../assets/instagram.svg";
+import whImg from "../../assets/whatsapp.svg";
+import footerStyle from './footer.module.css'
 
 function FooterLogo () {
   return (

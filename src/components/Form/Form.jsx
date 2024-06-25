@@ -1,12 +1,10 @@
 import { useContext } from "react";
-import { CheckoutInfoContext } from "./Register";
+import { CheckoutInfoContext } from "../../context/RegisterContext";
 // 匯入不同部分表單
-import FormAddress from "./form_address";
-import FormShipping from "./form_shipping"
-import FormCheckout from "./form_checkout"
-import formStyle from "../style/form.module.css"
-
-
+import FormAddress from "./Form_address";
+import FormShipping from "./Form_shipping";
+import FormCheckout from "./Form_checkout";
+import formStyle from "./form.module.css";
 
 export default function Form() {
   // 判斷狀態用函式
@@ -19,8 +17,8 @@ export default function Form() {
       return FormCheckout;
     }
   }
-  
-  const { status } = useContext(CheckoutInfoContext)
+
+  const { status } = useContext(CheckoutInfoContext);
   const Form = statusJudge(status);
 
   return (
